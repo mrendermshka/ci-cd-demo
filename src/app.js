@@ -19,8 +19,7 @@ app.get('/api/rooms', (req, res) => {
   if (!maxPrice) {
     return res.json(rooms);
   }
-  // помилка: < замість <=, кімната з ціною рівно maxPrice не потрапить у результат
-  res.json(rooms.filter((r) => r.price < maxPrice));
+  res.json(rooms.filter((r) => r.price <= maxPrice));
 });
 
 app.get('/api/rooms/:id', (req, res) => {
