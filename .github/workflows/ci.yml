@@ -11,22 +11,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Завантажити код
-        uses: actions/checkout@v4
+      - name: Р—Р°РІР°РЅС‚Р°Р¶РёС‚Рё РєРѕРґ
+        uses: actions/checkout@v5
 
-      - name: Встановити Node.js
-        uses: actions/setup-node@v4
+      - name: Р’СЃС‚Р°РЅРѕРІРёС‚Рё Node.js
+        uses: actions/setup-node@v5
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
 
-      - name: Встановити залежності
+      - name: Р’СЃС‚Р°РЅРѕРІРёС‚Рё Р·Р°Р»РµР¶РЅРѕСЃС‚С–
         run: npm ci
 
-      - name: Перевірити стиль коду
+      - name: РџРµСЂРµРІС–СЂРёС‚Рё СЃС‚РёР»СЊ РєРѕРґСѓ
         run: npm run lint
 
-      - name: Запустити тести
+      - name: Р—Р°РїСѓСЃС‚РёС‚Рё С‚РµСЃС‚Рё
         run: npm test
         env:
           JWT_SECRET: ${{ secrets.JWT_SECRET }}

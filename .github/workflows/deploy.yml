@@ -22,16 +22,16 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
-      - name: Налаштувати Pages
+      - name: РќР°Р»Р°С€С‚СѓРІР°С‚Рё Pages
         uses: actions/configure-pages@v5
 
-      - name: Завантажити папку public
+      - name: Р—Р°РІР°РЅС‚Р°Р¶РёС‚Рё РїР°РїРєСѓ public
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
 
-      - name: Задеплоїти
+      - name: Р—Р°РґРµРїР»РѕС—С‚Рё
         id: deployment
         uses: actions/deploy-pages@v4
