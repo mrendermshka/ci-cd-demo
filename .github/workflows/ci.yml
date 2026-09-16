@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Завантажити код
+        uses: actions/checkout@v4
+
+      - name: Встановити Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Встановити залежності
+        run: npm ci
+
+      - name: Перевірити стиль коду
+        run: npm run lint
+
+      - name: Запустити тести
+        run: npm test
+        env:
+          JWT_SECRET: ${{ secrets.JWT_SECRET }}
