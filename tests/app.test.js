@@ -9,6 +9,14 @@ describe('GET /api/health', () => {
   });
 });
 
+describe('GET /api/rooms?maxPrice=', () => {
+  it('повертає кімнати з ціною не більше maxPrice', async () => {
+    const res = await request(app).get('/api/rooms?maxPrice=1200');
+    expect(res.status).toBe(200);
+    expect(res.body.map((r) => r.name)).toEqual(['Standard']);
+  });
+});
+
 describe('GET /api/rooms/:id', () => {
   it('повертає кімнату за id', async () => {
     const res = await request(app).get('/api/rooms/1');

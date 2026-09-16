@@ -15,7 +15,12 @@ app.get('/api/health', (req, res) => {
 });
 
 app.get('/api/rooms', (req, res) => {
-  res.json(rooms);
+  const maxPrice = Number(req.query.maxPrice);
+  if (!maxPrice) {
+    return res.json(rooms);
+  }
+  // помилка: < замість <=, кімната з ціною рівно maxPrice не потрапить у результат
+  res.json(rooms.filter((r) => r.price < maxPrice));
 });
 
 app.get('/api/rooms/:id', (req, res) => {
